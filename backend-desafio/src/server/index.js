@@ -28,7 +28,7 @@ app.post('/posts', async (req, res) => {
 
   try {
     const newPost = await createPost(id, titulo, img, descripcion, likes);
-    res.json(newPost);
+    res.status(201).json(newPost); 
   } catch (error) {
     console.error('Error al agregar el post:', error);
     if (error.message === 'Ya existe un post con ese id') {
@@ -38,6 +38,7 @@ app.post('/posts', async (req, res) => {
     }
   }
 });
+
 
 app.put('/posts/like/:id', async (req, res) => {
   const { id } = req.params;
